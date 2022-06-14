@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\Main\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
@@ -29,4 +30,5 @@ Route::resources([
     'colors' => ColorController::class,
     'users' => UserController::class,
     'products' => ProductController::class,
+    'groups' => GroupController::class,
 ]);
