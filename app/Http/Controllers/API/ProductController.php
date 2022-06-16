@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Product\IndexProductResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 
@@ -11,12 +12,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         $products = Product::all();
-        return ProductResource::collection($products);
+        return IndexProductResource::collection($products);
     }
 
     /**
@@ -75,12 +76,12 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return ProductResource
      */
-   /* public function show(Category $category)
+    public function show(Product $product)
     {
-        return view('category.show', compact('category'));
-    }*/
+        return new ProductResource($product);
+    }
 
     /**
      * Show the form for editing the specified resource.
