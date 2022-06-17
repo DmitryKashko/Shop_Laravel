@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class StoreRequest extends FormRequest
 {
@@ -27,13 +28,14 @@ class StoreRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required',
             'content' => 'required',
-            'preview_image' => 'required',
+            'preview_image' => 'nullable|required',
             'price' => 'required',
             'count' => 'required',
             'is_publish' => 'nullable',
             'category_id' => 'nullable',
             'tags' => 'nullable|array',
             'colors' => 'nullable|array',
+            'product_images' => 'nullable|array',
         ];
     }
 }
