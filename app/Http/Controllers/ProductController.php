@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\IndexRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Category;
 use App\Models\Color;
@@ -47,7 +47,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRequest $request)
+    public function store(IndexRequest $request)
     {
         $data = $request->validated();
         /*dd($data);*/
@@ -77,9 +77,9 @@ class ProductController extends Controller
         }
 
         foreach($productImages as $productImage) {
-            $currentImages = ProductImage::where('product_id', $product->id)->get();
+            $currentImagesCount = ProductImage::where('product_id', $product->id)->count();
 
-            if(count($currentImages) > 3) continue;
+            if($currentImagesCount > 3) continue;
             $filePath = Storage::disk('public')->put('/images', $productImage);
             ProductImage::create([
                 'product_id' => $product->id,

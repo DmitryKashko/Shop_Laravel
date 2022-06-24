@@ -11,7 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Главная</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('users.index') }}" class="nav-link">Главная</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -29,27 +29,48 @@
 
                     <div class="form-group">
                         <input type="text" value="{{ old('name') }}" name="name" class="form-control" placeholder="Имя">
+                        @error('name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="email" value="{{ old('email') }}" name="email" class="form-control" placeholder="Email">
+                        @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('password') }}" name="password" class="form-control" placeholder="Пароль">
+                        @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('password_confirmation') }}" name="password_confirmation" class="form-control" placeholder="Повтор пароля">
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('surname') }}" name="surname" class="form-control" placeholder="Фамилия">
+                        @error('surname')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('patronymic') }}" name="patronymic" class="form-control" placeholder="Отчество">
+                        @error('patronymic')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('age') }}" name="age" class="form-control" placeholder="Возраст">
+                        @error('age')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="text" value="{{ old('address') }}" name="address" class="form-control" placeholder="Адрес">
+                        @error('address')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <select name="gender" class="custom-select form-control" id="exampleSelectBorder">
@@ -57,6 +78,9 @@
                             <option {{ old('gender') == 1 ? ' selected' : '' }} value="1">Мужской</option>
                             <option {{ old('gender') == 2 ? ' selected' : '' }} value="1">Женский</option>
                         </select>
+                        @error('gender')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
