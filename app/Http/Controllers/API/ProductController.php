@@ -15,12 +15,13 @@ use App\Models\Tag;
 class ProductController extends Controller
 {
 
-    public function index(IndexRequest $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(IndexRequest $request)
     {
         $data = $request->validated();
         $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
 
-        $products = Product::filter($filter)->get();
+        /*$products = Product::filter($filter)->get();*/
+        $products = Product::filter($filter)->paginate(12, ['*'], 'page', $data['page']);
 
         return IndexProductResource::collection($products);
     }
