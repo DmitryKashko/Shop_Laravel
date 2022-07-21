@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\Main\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,7 @@ Route::get('/', [AdminController::class, 'index'])->name('main.index');
 Route::resources([
     'categories' => CategoryController::class,
     'tags' => TagController::class,
+    'orders' => OrderController::class,
     'colors' => ColorController::class,
     'users' => UserController::class,
     'products' => ProductController::class,
