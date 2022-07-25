@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        /*Schema::table('users', function (Blueprint $table) {
             $table->string('surname')->nullable();
             $table->string('patronymic')->nullable();
             $table->integer('age')->nullable();
             $table->string('address')->nullable();
             $table->unsignedSmallInteger('gender')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -29,12 +29,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        /*Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('surname');
             $table->dropColumn('patronymic');
             $table->dropColumn('age');
             $table->dropColumn('address');
             $table->dropColumn('gender');
-        });
+        });*/
     }
 };

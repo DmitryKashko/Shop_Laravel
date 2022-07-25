@@ -36,6 +36,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Наименование</th>
+                                    <th>Цена</th>
                                 </tr>
                                 </thead>
                                 <tbody>

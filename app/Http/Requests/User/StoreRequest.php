@@ -25,13 +25,14 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
+            'email' => 'required|email',
             'password' => 'required|string|confirmed',
-            'surname' => 'nullable|string',
+            'password_confirmation' => 'required|string',
+            /*'surname' => 'nullable|string',
             'patronymic' => 'nullable|string',
             'age' => 'nullable|string',
             'address' => 'nullable|string',
-            'gender' => 'nullable|string',
+            'gender' => 'nullable|string',*/
         ];
     }
 }

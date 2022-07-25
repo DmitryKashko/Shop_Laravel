@@ -194,6 +194,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        /*'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',*/
+
 
     ],
 
@@ -209,6 +211,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        /*'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+        'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',*/
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

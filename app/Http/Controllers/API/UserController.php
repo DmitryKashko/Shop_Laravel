@@ -3,53 +3,58 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Order\StoreRequest;
-use App\Http\Resources\Order\OrderResource;
-use App\Models\Order;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class OrderController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $order = Order::all();
-        return OrderResource::collection($order);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return OrderResource|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-
-        $password = bcrypt('123123123');
-
+        $data['password'] = Hash::make($data['password']);
+        /*User::firstOrCreate([
+            'email' => $data['email']
+        ], $data)*/;
+        $user = User::where('email', $data['email'])->first();
+        if($user) return response(['error' => 'User with this email already exists'], 403);
+        /*$user = User::firstOrCreate($data);*/
         $user = User::firstOrCreate([
             'email' => $data['email']
         ],[
-            /*'name' => $data['name'],*/
-            'address' => $data['address'],
-            'password' => $password,
+            'name' => $data['name'],
+            'password' => $data['password'],
             /*'gender' => '1',*/
         ]);
-
-        $order = Order::create([
-            'products' => json_encode($data['products']),
-            'user_id' => $user->id,
-            'total_price' => $data['total_price'],
-        ]);
-        return new OrderResource($order);
+        $token = auth()->tokenById($user->id);
+        return response(['access_token' => $token]);
     }
 
     /**
@@ -59,6 +64,17 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }

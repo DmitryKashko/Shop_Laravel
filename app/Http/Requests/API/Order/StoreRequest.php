@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
             'products' => 'required|array',
             'name' => 'required|string',
             'email' => 'required|string',
-            'address' => 'required|string',
+            /*'address' => 'required|string',*/
             'total_price' => 'required|integer',
         ];
     }
